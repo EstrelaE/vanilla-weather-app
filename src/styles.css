@@ -41,11 +41,6 @@ li {
   margin-bottom: 20px;
 }
 
-.weather-temperature i {
-  font-size: 45px;
-  margin-right: 5px;
-}
-
 .weather-temperature strong {
   font-size: 57px;
   font-weight: 400;
