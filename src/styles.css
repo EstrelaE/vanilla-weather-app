@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  color: #878787;
+  color: black;
   font-size: 24px;
   font-weight: 100;
   line-height: 28px;
@@ -19,7 +19,7 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: #878787;
+  color: black;
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
@@ -38,13 +38,21 @@ a:hover {
 }
 
 .weather-app-wrapper {
-  max-width: 600px;
   margin: 30px auto;
+  max-width: 600px;
 }
 
 .weather-app {
+  max-width: 600px;
+  box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border: 1px solid #dadde1;
+  border-radius: 5px;
+}
+
+#weather-app {
+  background-image: url("../images/01d.jpg");
+  background-size: cover;
   border-radius: 5px;
 }
 

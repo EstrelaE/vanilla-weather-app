@@ -34,6 +34,10 @@ function displayTemperature(response) {
 
   celsiusTemp = response.data.main.temp;
 
+  document.getElementById(
+    "weather-app"
+  ).style.backgroundImage = `url('images/${response.data.weather[0].icon}.jpg')`;
+
   temperatureElement.innerHTML = Math.round(celsiusTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -59,7 +63,6 @@ function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
-  console.log(cityInputElement.value);
 }
 
 function displayFahrenheitTemp(event) {
@@ -79,7 +82,7 @@ function displayCelsiusTemp(event) {
 
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  
+
   temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
 
