@@ -121,7 +121,6 @@ function displayTemperature(response) {
     `https://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
   getForecast(response.data.coord);
 }
 
@@ -135,14 +134,19 @@ function search(city) {
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
-  document.getElementById("city-input").value = "";
   axios.get(apiUrl).then(displayTemperature).catch(displayError);
+  if (axios.get(apiUrl)) {
+    document.getElementById("city-input").value = "";
+  }
 }
 
 function handleSubmit(event) {
   event.preventDefault();
+  let currentCity = document.querySelector("#city");
   let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
+  if (cityInputElement.value !== currentCity) {
+    search(cityInputElement.value);
+  }
 }
 
 let currentLocationButton = document.querySelector("#current-location");
