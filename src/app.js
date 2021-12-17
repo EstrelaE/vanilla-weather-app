@@ -125,7 +125,7 @@ function displayTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function displayError(params) {
+function displayError() {
   alert("Can't find that city. Check for any mistakes and try again 🌞");
 }
 
@@ -135,6 +135,7 @@ function search(city) {
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
+  document.getElementById("city-input").value = "";
   axios.get(apiUrl).then(displayTemperature).catch(displayError);
 }
 
