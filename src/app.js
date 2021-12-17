@@ -29,6 +29,23 @@ function formatDay(timestamp) {
   return days[day];
 }
 
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showCurrentPosition);
+}
+
+function showCurrentPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = `a27b2f052c3b6156c214f3a13d66d3bf`;
+  let apiEndPoint = `https://api.openweathermap.org/data/2.5/weather`;
+  let apiUrl = `${apiEndPoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayTemperature);
+  navigator.geolocation.getCurrentPosition;
+  console.log(position);
+}
+
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
@@ -113,6 +130,7 @@ function search(city) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
+
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -121,6 +139,9 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
+
+let currentLocationButton = document.querySelector("#current-location");
+currentLocationButton.addEventListener("click", getCurrentPosition);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
