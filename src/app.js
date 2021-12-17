@@ -125,13 +125,17 @@ function displayTemperature(response) {
   getForecast(response.data.coord);
 }
 
+function displayError(params) {
+  alert("Can't find that city. Check for any mistakes and try again 🌞");
+}
+
 function search(city) {
   let apiKey = "a27b2f052c3b6156c214f3a13d66d3bf";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
-  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemperature).catch(displayError);
 }
 
 function handleSubmit(event) {
