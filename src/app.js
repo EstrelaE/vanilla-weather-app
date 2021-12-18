@@ -97,6 +97,7 @@ function getForecast(coordinates) {
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
+  let countryElement = document.querySelector("#country");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
@@ -112,6 +113,7 @@ function displayTemperature(response) {
 
   temperatureElement.innerHTML = Math.round(celsiusTemp);
   cityElement.innerHTML = response.data.name;
+  countryElement.innerHTML = response.data.sys.country;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -122,6 +124,7 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   getForecast(response.data.coord);
+  console.log(response.data);
 }
 
 function displayError() {
@@ -148,6 +151,39 @@ function handleSubmit(event) {
     search(cityInputElement.value);
   }
 }
+
+function showRandomWeather() {
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+  let icon = city.data.weather[0].icon;
+}
+
+function getRandomInt(max) {
+  const randomNumberBetweenZeroAndOne = Math.random();
+  const randomNumberProper = randomNumberBetweenZeroAndOne * max;
+  const randomNumberClean = Math.floor(randomNumberProper);
+  return randomNumberClean;
+}
+
+function getRandomCity(event) {
+  event.preventDefault();
+  const randomCityIndex = getRandomInt(cities.length);
+  const city = cities[randomCityIndex];
+  let id = city.id;
+  let apiKey = "a27b2f052c3b6156c214f3a13d66d3bf";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiUrl = `${apiEndpoint}?id=${id}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+  console.log(id);
+}
+
+let randomButton = document.querySelector("#random-button");
+randomButton.addEventListener("click", getRandomCity);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getCurrentPosition);

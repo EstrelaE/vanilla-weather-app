@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="src/cities.json"></script>
     <title>Weather App</title>
     <script
       src="https://kit.fontawesome.com/c687083877.js"
@@ -24,8 +25,8 @@
         <div class="body-card-background">
           <div class="weather-app" id="weather-app">
             <form id="search-form" class="mb-3">
-              <div class="row">
-                <div class="col-7">
+              <div class="row justify-content-start">
+                <div class="col-6">
                   <input
                     type="search"
                     placeholder="Type a city.."
@@ -42,7 +43,7 @@
                     <i class="fas fa-search-location"></i>
                   </button>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                   <button
                     class="btn btn-primary w-90 current-location"
                     id="current-location"
@@ -50,10 +51,18 @@
                     Current
                   </button>
                 </div>
+                <div class="col-2">
+                  <button
+                    class="btn btn-primary w-90 random-location"
+                    id="random-button"
+                  >
+                    Random
+                  </button>
+                </div>
               </div>
             </form>
             <div class="overview">
-              <h1 id="city"></h1>
+              <h1><span id="city"></span>, <span id="country"></span></h1>
               <ul>
                 <li id="date"></li>
                 <li id="description"></li>
