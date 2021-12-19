@@ -138,9 +138,7 @@ function search(city) {
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
   axios.get(apiUrl).then(displayTemperature).catch(displayError);
-  if (axios.get(apiUrl)) {
-    document.getElementById("city-input").value = "";
-  }
+  
 }
 
 function handleSubmit(event) {
