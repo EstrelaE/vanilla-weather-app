@@ -43,7 +43,6 @@ function showCurrentPosition(position) {
 
   axios.get(apiUrl).then(displayTemperature);
   navigator.geolocation.getCurrentPosition;
-  console.log(position);
 }
 
 function displayForecast(response) {
@@ -95,6 +94,8 @@ function getForecast(coordinates) {
 }
 
 function displayTemperature(response) {
+  document.getElementById("city-input").value = "";
+
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let countryElement = document.querySelector("#country");
@@ -124,7 +125,6 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   getForecast(response.data.coord);
-  console.log(response.data);
 }
 
 function displayError() {
@@ -138,7 +138,6 @@ function search(city) {
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
   axios.get(apiUrl).then(displayTemperature).catch(displayError);
-  
 }
 
 function handleSubmit(event) {
@@ -177,7 +176,6 @@ function getRandomCity(event) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?id=${id}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
-  console.log(id);
 }
 
 let randomButton = document.querySelector("#random-button");
