@@ -149,20 +149,9 @@ function handleSubmit(event) {
   }
 }
 
-function showRandomWeather() {
-  let temperatureElement = document.querySelector("#temperature");
-  let cityElement = document.querySelector("#city");
-  let descriptionElement = document.querySelector("#description");
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
-  let dateElement = document.querySelector("#date");
-  let iconElement = document.querySelector("#icon");
-  let icon = city.data.weather[0].icon;
-}
-
 function getRandomInt(max) {
   const randomNumberBetweenZeroAndOne = Math.random();
-  const randomNumberProper = randomNumberBetweenZeroAndOne * max;
+  const randomNumberProper = randomNumberBetweenZeroAndOne * (max - 1);
   const randomNumberClean = Math.floor(randomNumberProper);
   return randomNumberClean;
 }
